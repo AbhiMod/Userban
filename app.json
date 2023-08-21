@@ -1,0 +1,20 @@
+{
+    "name": "Ban All",
+    "logo": "https://te.legra.ph/file/3cbeac73435ebcf768b52.jpg",
+    "keywords": [
+      "telegram",
+      "bot",
+      "AMBOT"
+    ],
+      "buildpacks": [{
+      "url": "heroku/python"
+    }],
+    "env": {
+        "SESSION": {
+            "value": ""
+        },
+        "SUDO_USERS": {
+            "value": ""
+        }
+    }
+  }
