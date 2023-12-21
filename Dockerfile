@@ -8,4 +8,4 @@ WORKDIR /app/
 COPY . /app/
 RUN pip3 install -r requirements.txt
 RUN sudo ntpdate -s time.nist.gov
-CMD python3 Am.py
+CMD python3 -m bot
