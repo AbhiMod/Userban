@@ -2,7 +2,7 @@ from os import getenv
 from asyncio import sleep
 from telethon import TelegramClient, events
 from telethon.errors import UserIdInvalidError
-from telethon.tl.functions.channels import GetParticipants
+from telethon.tl.functions.channels import GetParticipantsRequest
 from telethon.tl.types import ChannelParticipantsAdmins
 
 SESSION = getenv('SESSION')
@@ -33,7 +33,8 @@ async def altron(event):
     await sleep(3)
 
     try:
-        async for user in client.iter_participants(chat_id, filter=ChannelParticipantsAdmins):
+        participants = await client(GetParticipantsRequest(chat_id, filter=ChannelParticipantsAdmins))
+        for user in participants.users:
             if user.id in SUDO_USERS:
                 continue
             try:
