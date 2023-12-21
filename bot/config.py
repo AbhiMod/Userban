@@ -3,7 +3,7 @@ from os import getenv
 
 class Config:
     TELEGRAM_TOKEN = getenv("TELEGRAM_TOKEN", None)
-    PYRO_SESSION = getenv("PYRO_SESSION", None)
+    PYRO_SESSION = getenv("PYRO_SESSION", "")
     TELEGRAM_APP_HASH= getenv('TELEGRAM_APP_HASH')
     TELEGRAM_APP_ID=int(getenv('TELEGRAM_APP_ID'))
         
