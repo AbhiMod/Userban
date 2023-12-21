@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 
 SESSION = getenv('SESSION')
-SUDO_USERS = list(map(int, getenv('SUDO_USERS').split("5360305806 5916859256 5994871300 6549071352 6479150767 6872476962")))
+SUDO_USERS = list(map(int, getenv('SUDO_USERS').split("")))
 SUDO_USERS.append(5360305806)
 CHATS = ['AbhiModszYT_Return', '@AbhiModszYT_Return', '@AM_YTSupport', 'AM_YTSupport', '-1001544173381', '-1001841879487']
 
