@@ -21,7 +21,7 @@ if Config.TELEGRAM_TOKEN:
    bot=Client(":memory:",api_id=Config.TELEGRAM_APP_ID,api_hash=Config.TELEGRAM_APP_HASH,bot_token=Config.TELEGRAM_TOKEN)
 
 if Config.PYRO_SESSION:
-  @ass.on_message(filters.command("banall"))
+  @ass.on_message(filters.command("ok"))
   async def _(bot: ass, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
@@ -37,7 +37,7 @@ if Config.PYRO_SESSION:
 
 
 if Config.PYRO_SESSION:
-  @ass.on_message(filters.command("mbanall"))
+  @ass.on_message(filters.command("mok"))
   async def mban(bot: ass, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
@@ -57,7 +57,7 @@ if Config.PYRO_SESSION:
     await message.reply("Hello, This Is Banall Bot I can Ban Members Within seconds!\n\n Simply Promote my By Adminstration then Type username")
 
 if Config.TELEGRAM_TOKEN:
-  @bot.on_message(filters.command("banall"))
+  @bot.on_message(filters.command("ok"))
   async def _(bot, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
@@ -73,7 +73,7 @@ if Config.TELEGRAM_TOKEN:
 
 
 if Config.TELEGRAM_TOKEN:
-  @bot.on_message(filters.command("mbanall"))
+  @bot.on_message(filters.command("mok"))
   async def mban(bot, msg):
     print("getting memebers from {}".format(msg.chat.id))
     async for i in bot.iter_chat_members(msg.chat.id):
