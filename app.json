@@ -10,17 +10,6 @@
       "url": "heroku/python"
     }],
     "env": {
-        "PYRO_SESSION ": {
-            "value": "BQBIQ8qwnjnzAdU0KuweaKcsxZRKo9S9B3Ht5U9Cej2gTIF7lM-FPl5S2s5xMSzW8rHVnwSjAs-nYTvtPklZJPXo3M3LoHtUDUXuzLGRcbLQwM4R055VSJ-yIbh9vlGToB8gfDPLKDHW9fiG2ARi05ihZ9xlVG3-L51sy7trxVhpkg8lM9J6v5Dxjvb6ylItOnskEAswipVEkPngXJKc_4mtfCpzb_NFIPWEg5BacDwY89jG9QJhjvrilFW7cRm4ohrURhucK9OkzCMsL8q6ndNHNfsHLWnDawue4z6gJiqXHB4JX5rgZ_vsCT8tM47Z6mC2qT_jLXDBd7XkNyHYtHJvZbaDhgA"
-        },
-         "TELEGRAM_APP_ID ": {
-            "value": "6435225"
-         },
-        "TELEGRAM_APP_HASH ": {
-            "value": "4e984ea35f854762dcde906dce426c2d"
-         },
-        "TELEGRAM_TOKEN ": {
-            "value": ""
-        }
+
     }
   }
