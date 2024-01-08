@@ -2,7 +2,6 @@ import asyncio
 
 from pyrogram.errors.exceptions.flood_420 import FloodWait
 from pyrogram import Client,filters
-from pyrogram.enums import ChatType, ChatMemberStatus
 from pyrogram.errors import UserNotParticipant
 from pyrogram.types import ChatPermissions
 from pyrogram.types import *
